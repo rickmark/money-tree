@@ -6,7 +6,7 @@ require 'ffi'
 module MoneyTree
   module OpenSSLExtensions
     extend FFI::Library
-    ffi_lib ['libssl.so.1.0.0', 'libssl.so.10', 'libssl1.0.0', 'ssl']
+    ffi_lib ['libcrypto.1.1.dylib', 'libcrypto.so.1.1', 'libcrypto.1.dylib', 'libcrypto.so.1', 'libcrypto', 'crypto']
 
     NID_secp256k1 = 714
     POINT_CONVERSION_COMPRESSED = 2
@@ -61,13 +61,3 @@ module MoneyTree
   end
 end
 
-
-class OpenSSL::PKey::EC::Point
-  include MoneyTree::OpenSSLExtensions
-  
-  def add(point)
-    sum_point_hex = MoneyTree::OpenSSLExtensions.add(self, point)
-    self.class.new group, OpenSSL::BN.new(sum_point_hex, 16)
-  end
-  
-end

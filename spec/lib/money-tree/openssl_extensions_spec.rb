@@ -54,5 +54,11 @@ describe MoneyTree::OpenSSLExtensions do
 
       expect(result_point).to eql(fixed_sum_point)
     end
+
+    it 'should be able to create the same hex output for the point' do
+      hex_output = fixed_sum_point.to_bn.to_s(16)
+
+      expect(hex_output).to eq(FIXED_SUM)
+    end
   end
 end

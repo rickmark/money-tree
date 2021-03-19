@@ -26,8 +26,6 @@ Gem::Specification.new do |spec|
     spec.signing_key = File.join(Gem.user_home, ".ssh", "gem-private_key.pem")
   end
 
- 
-  spec.add_dependency "ffi"
     
   spec.add_development_dependency "bundler"
   spec.add_development_dependency "rake"
